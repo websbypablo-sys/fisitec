@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fisitec – Fisioterapia Avanzada en Mairena del Aljarafe</title>
+  <meta name="description" content="Clínica de fisioterapia especializada en deportes, traumatología, suelo pélvico y neurología. Pide cita en Mairena del Aljarafe, Sevilla." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────── */
+    :root {
+      --primary:        #00478d;
+      --primary-cont:   #005eb8;
+      --on-primary:     #ffffff;
+      --secondary:      #006d37;
+      --secondary-cont: #6bfe9c;
+      --tertiary:       #af3216;
+      --on-tertiary:    #ffffff;
+      --surface:        #f9f9ff;
+      --surface-low:    #f0f3ff;
+      --surface-cont:   #e7eeff;
+      --surface-high:   #dee8ff;
+      --surface-white:  #ffffff;
+      --on-surface:     #111c2c;
+      --on-surface-var: #424752;
+      --outline:        #727783;
+      --outline-var:    #c2c6d4;
+      --shadow-blue:    rgba(0, 94, 184, 0.08);
+      --shadow-blue-md: rgba(0, 94, 184, 0.14);
+    }
+
+    /* ─── RESET & BASE ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      font-size: 16px;
+      line-height: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ─── TYPOGRAPHY ────────────────────────────────── */
+    .display-lg     { font-family: 'Manrope', sans-serif; font-size: 48px; font-weight: 800; line-height: 56px; letter-spacing: -0.02em; }
+    .display-mobile { font-family: 'Manrope', sans-serif; font-size: 36px; font-weight: 800; line-height: 44px; letter-spacing: -0.02em; }
+    .headline-md    { font-family: 'Manrope', sans-serif; font-size: 32px; font-weight: 700; line-height: 40px; }
+    .headline-sm    { font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 700; line-height: 32px; }
+    .body-lg        { font-size: 18px; line-height: 28px; }
+    .body-md        { font-size: 16px; line-height: 24px; }
+    .body-sm        { font-size: 14px; line-height: 20px; }
+    .label-bold     { font-size: 14px; font-weight: 600; line-height: 16px; letter-spacing: 0.05em; }
+
+    /* ─── LAYOUT ────────────────────────────────────── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { scroll-margin-top: 84px; }
+
+    /* ─── BUTTONS ───────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px; font-weight: 600; line-height: 16px;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--tertiary);
+      color: var(--on-tertiary);
+      box-shadow: 0 4px 16px rgba(175, 50, 22, 0.3);
+    }
+    .btn-primary:hover { background: #8d1900; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(175, 50, 22, 0.4); }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-ghost {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-ghost:hover { background: var(--surface-low); transform: translateY(-1px); }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 80px;
+      background: rgba(249, 249, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--outline-var);
+      display: flex; align-items: center;
+      transition: box-shadow 0.3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 20px var(--shadow-blue); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 800;
+      color: var(--primary);
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-cont));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+    }
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 15px; font-weight: 600; color: var(--on-surface-var);
+      position: relative; padding-bottom: 4px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .hamburger { display: none; }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 200;
+      display: flex; flex-direction: column;
+      background: var(--surface-white);
+      padding: 24px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 40px;
+    }
+    .mobile-menu nav { display: flex; flex-direction: column; gap: 8px; }
+    .mobile-menu nav a {
+      font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 700;
+      color: var(--on-surface); padding: 12px 0;
+      border-bottom: 1px solid var(--outline-var);
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .mobile-menu nav a:hover { color: var(--primary); padding-left: 8px; }
+    .mobile-menu .btn-primary { margin-top: 32px; width: 100%; justify-content: center; }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    #inicio {
+      padding-top: 80px;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(160deg, var(--surface) 0%, var(--surface-low) 50%, var(--surface-high) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.35; pointer-events: none;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--primary-cont); top: -100px; right: -100px; }
+    .blob-2 { width: 300px; height: 300px; background: var(--secondary-cont); bottom: 50px; left: -80px; }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface-cont); border: 1px solid var(--outline-var);
+      border-radius: 9999px; padding: 6px 14px;
+      font-size: 13px; font-weight: 600; color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .hero-badge .material-symbols-outlined { font-size: 16px; }
+    .hero-title { color: var(--primary); margin-bottom: 20px; }
+    .hero-title span { color: var(--tertiary); }
+    .hero-desc { color: var(--on-surface-var); max-width: 480px; margin-bottom: 36px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin-top: 40px;
+    }
+    .stat-chip {
+      background: var(--surface-white);
+      border: 1px solid var(--outline-var);
+      border-radius: 12px; padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--shadow-blue);
+    }
+    .stat-chip .num { font-family: 'Manrope', sans-serif; font-size: 26px; font-weight: 800; color: var(--primary); }
+    .stat-chip .lbl { font-size: 12px; color: var(--on-surface-var); margin-top: 2px; }
+    .hero-image-wrap {
+      position: relative;
+    }
+    .hero-image-card {
+      background: var(--surface-white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px var(--shadow-blue-md);
+      aspect-ratio: 4/5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-image-card img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-rating-badge {
+      position: absolute; bottom: -20px; left: -20px;
+      background: var(--surface-white);
+      border-radius: 16px; padding: 16px 20px;
+      box-shadow: 0 8px 30px var(--shadow-blue-md);
+      display: flex; align-items: center; gap: 12px;
+      z-index: 2;
+    }
+    .stars { color: #fb8500; display: flex; gap: 2px; }
+    .stars .material-symbols-outlined { font-size: 18px; font-variation-settings: 'FILL' 1; }
+    .rating-text .rating-val { font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 800; color: var(--on-surface); }
+    .rating-text .rating-sub { font-size: 12px; color: var(--on-surface-var); }
+
+    /* ─── TRUST BAR ─────────────────────────────────── */
+    #trust-bar {
+      background: var(--primary);
+      padding: 24px 0;
+      overflow: hidden;
+    }
+    .trust-track {
+      display: flex; gap: 48px; align-items: center;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap; width: max-content;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600;
+    }
+    .trust-item .material-symbols-outlined { font-size: 20px; color: var(--secondary-cont); }
+
+    /* ─── SERVICES ──────────────────────────────────── */
+    #servicios { padding: 96px 0; }
+    .section-label {
+      display: inline-block;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--secondary); background: rgba(107,254,156,0.15);
+      border-radius: 9999px; padding: 4px 14px; margin-bottom: 12px;
+    }
+    .section-title { color: var(--primary); margin-bottom: 12px; }
+    .section-desc { color: var(--on-surface-var); max-width: 520px; }
+    .section-header { margin-bottom: 56px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .service-card {
+      background: var(--surface-white);
+      border: 1px solid var(--outline-var);
+      border-radius: 16px; padding: 28px;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px var(--shadow-blue-md);
+      border-color: rgba(0,71,141,0.2);
+    }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: rgba(107,254,156,0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon .material-symbols-outlined { font-size: 26px; color: var(--secondary); }
+    .service-card h3 {
+      font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 700;
+      color: var(--on-surface); margin-bottom: 8px;
+    }
+    .service-card p { font-size: 14px; color: var(--on-surface-var); line-height: 22px; }
+
+    /* ─── HOW WE WORK ───────────────────────────────── */
+    #como-trabajamos {
+      padding: 96px 0;
+      background: linear-gradient(180deg, var(--surface-low), var(--surface-cont));
+    }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      position: relative; margin-top: 56px;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute; top: 28px; left: calc(12.5% + 24px); right: calc(12.5% + 24px);
+      height: 2px; background: linear-gradient(90deg, var(--secondary), var(--primary));
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 0 16px; position: relative; z-index: 1;
+    }
+    .step-circle {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-cont));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0,71,141,0.3);
+    }
+    .step-circle .material-symbols-outlined { font-size: 24px; color: white; }
+    .step h3 { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 700; color: var(--on-surface); margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--on-surface-var); line-height: 22px; }
+
+    /* ─── TEAM ──────────────────────────────────────── */
+    #equipo { padding: 96px 0; }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+      margin-top: 56px;
+    }
+    .team-card {
+      background: var(--surface-white);
+      border: 1px solid var(--outline-var);
+      border-radius: 20px; overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px var(--shadow-blue-md);
+    }
+    .team-photo {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--surface-cont), var(--surface-high));
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .team-photo .material-symbols-outlined { font-size: 72px; color: var(--outline); }
+    .team-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,71,141,0.12), transparent);
+    }
+    .team-info { padding: 24px; }
+    .team-info h3 { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; color: var(--on-surface); margin-bottom: 4px; }
+    .team-badge {
+      display: inline-block;
+      background: rgba(175,50,22,0.1); color: var(--tertiary);
+      font-size: 13px; font-weight: 600;
+      border-radius: 9999px; padding: 4px 12px; margin-bottom: 12px;
+    }
+    .team-info p { font-size: 14px; color: var(--on-surface-var); line-height: 22px; }
+
+    /* ─── TESTIMONIALS ──────────────────────────────── */
+    #opiniones {
+      padding: 96px 0;
+      background: var(--surface-low);
+    }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 56px;
+    }
+    .testimonial-card {
+      background: var(--surface-white);
+      border: 1px solid var(--outline-var);
+      border-radius: 16px; padding: 28px;
+      transition: all 0.25s ease;
+    }
+    .testimonial-card:hover { box-shadow: 0 8px 30px var(--shadow-blue); }
+    .t-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+    .t-stars .material-symbols-outlined { font-size: 20px; color: #fb8500; font-variation-settings: 'FILL' 1; }
+    .t-text { font-size: 15px; color: var(--on-surface-var); line-height: 24px; font-style: italic; margin-bottom: 20px; }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--surface-cont), var(--surface-high));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .t-avatar .material-symbols-outlined { font-size: 22px; color: var(--outline); }
+    .t-name { font-weight: 600; font-size: 14px; color: var(--on-surface); }
+    .t-label { font-size: 12px; color: var(--on-surface-var); }
+
+    /* ─── CTA BANNER ────────────────────────────────── */
+    #cta-banner {
+      padding: 96px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-cont) 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #cta-banner::before {
+      content: ''; position: absolute;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -200px; right: -100px;
+    }
+    #cta-banner::after {
+      content: ''; position: absolute;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      bottom: -150px; left: -100px;
+    }
+    #cta-banner h2 { color: white; margin-bottom: 12px; position: relative; z-index: 1; }
+    #cta-banner p { color: rgba(255,255,255,0.8); margin-bottom: 36px; position: relative; z-index: 1; }
+    #cta-banner .btn-primary { position: relative; z-index: 1; }
+
+    /* ─── FAQ ───────────────────────────────────────── */
+    #faq { padding: 96px 0; }
+    .faq-list { margin-top: 56px; display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin-inline: auto; }
+    details {
+      background: var(--surface-white);
+      border: 1px solid var(--outline-var);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    details[open] {
+      box-shadow: 0 4px 20px var(--shadow-blue);
+      border-color: rgba(0,71,141,0.2);
+    }
+    details[open] summary { background: var(--surface-low); }
+    summary {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px;
+      cursor: pointer;
+      font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 16px;
+      color: var(--on-surface);
+      list-style: none; user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary .chevron {
+      transition: transform 0.25s ease; font-size: 20px; color: var(--primary);
+    }
+    details[open] summary .chevron { transform: rotate(180deg); }
+    .faq-answer { padding: 0 24px 20px; color: var(--on-surface-var); font-size: 15px; line-height: 24px; }
+
+    /* ─── CONTACT ───────────────────────────────────── */
+    #contacto {
+      padding: 96px 0;
+      background: linear-gradient(180deg, var(--surface-low), var(--surface));
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-row {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(0,71,141,0.08);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon .material-symbols-outlined { font-size: 22px; color: var(--primary); }
+    .contact-row h4 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; color: var(--on-surface); margin-bottom: 4px; }
+    .contact-row p { font-size: 14px; color: var(--on-surface-var); line-height: 22px; }
+    .map-embed {
+      border-radius: 16px; overflow: hidden;
+      height: 220px; width: 100%; margin-top: 12px;
+      box-shadow: 0 4px 20px var(--shadow-blue);
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: 0; }
+
+    /* ─── FORM ──────────────────────────────────────── */
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--on-surface); letter-spacing: 0.04em; }
+    .form-group input,
+    .form-group textarea {
+      border: 1.5px solid var(--outline-var);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--on-surface);
+      background: var(--surface-white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,71,141,0.12);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--outline); }
+    .contact-form .btn-primary { width: 100%; justify-content: center; margin-top: 4px; }
+
+    /* ─── FOOTER ────────────────────────────────────── */
+    footer {
+      background: var(--on-surface);
+      color: rgba(255,255,255,0.7);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo { color: white; margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; line-height: 22px; max-width: 280px; }
+    .footer-col h4 {
+      font-family: 'Manrope', sans-serif; font-weight: 700;
+      font-size: 14px; color: white; margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px;
+    }
+    .footer-bottom a { transition: color 0.2s; }
+    .footer-bottom a:hover { color: white; }
+
+    /* ─── SCROLL TO TOP ─────────────────────────────── */
+    #scroll-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 50;
+      width: 48px; height: 48px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,71,141,0.4);
+      color: white; cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: auto; }
+    #scroll-top:hover { transform: translateY(-3px); }
+
+    /* ─── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .steps-grid::before { display: none; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta .btn-ghost { display: none; }
+      .hamburger { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; }
+      .hamburger .material-symbols-outlined { font-size: 26px; color: var(--on-surface-var); }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .display-lg { font-size: 36px; line-height: 44px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      section { padding: 64px 0 !important; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#inicio" id="logo-link">
+        <div class="nav-logo-icon">
+          <span class="material-symbols-outlined" style="font-size:22px;">sports_handball</span>
+        </div>
+        Fisitec
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#como-trabajamos">Método</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="tel:+34600000000">Llamar ahora</a>
+        <a class="btn btn-primary" href="#contacto" id="nav-cta-btn">Pedir cita</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <div class="mobile-menu-header">
+      <a class="nav-logo" href="#inicio">
+        <div class="nav-logo-icon"><span class="material-symbols-outlined" style="font-size:22px;">sports_handball</span></div>
+        Fisitec
+      </a>
+      <button id="close-menu-btn" aria-label="Cerrar menú">
+        <span class="material-symbols-outlined" style="font-size:28px;color:var(--on-surface-var)">close</span>
+      </button>
+    </div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#como-trabajamos">Método</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-primary" href="#contacto">Pedir cita</a>
+  </div>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════ -->
+  <header id="inicio">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="material-symbols-outlined">verified</span>
+            Clínica certificada · Mairena del Aljarafe
+          </div>
+          <h1 class="display-lg hero-title">
+            Recupera tu movilidad.<br/>
+            <span>Vive sin dolor.</span>
+          </h1>
+          <p class="body-lg hero-desc">
+            En Fisitec combinamos tecnología de última generación y terapia manual experta para tratar el origen de tu dolencia, no solo sus síntomas.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto" id="hero-cta-btn">
+              <span class="material-symbols-outlined" style="font-size:20px;">calendar_month</span>
+              Pedir cita gratis
+            </a>
+            <a class="btn btn-ghost" href="#servicios" id="hero-services-btn">Ver servicios</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-chip"><div class="num">15+</div><div class="lbl">Años de experiencia</div></div>
+            <div class="stat-chip"><div class="num">5K+</div><div class="lbl">Pacientes recuperados</div></div>
+            <div class="stat-chip"><div class="num">6</div><div class="lbl">Especialistas</div></div>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-card">
+            <img src="screen.png" alt="Sesión de fisioterapia profesional en Fisitec" id="hero-image" />
+          </div>
+          <div class="hero-rating-badge">
+            <div class="stars">
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star_half</span>
+            </div>
+            <div class="rating-text">
+              <div class="rating-val">4.9</div>
+              <div class="rating-sub">+200 reseñas Google</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ TRUST BAR ═══════════════════════════════════════ -->
+  <div id="trust-bar" aria-hidden="true">
+    <div class="trust-track">
+      <div class="trust-item"><span class="material-symbols-outlined">verified_user</span> Fisioterapeutas colegiados</div>
+      <div class="trust-item"><span class="material-symbols-outlined">devices</span> Tecnología de última generación</div>
+      <div class="trust-item"><span class="material-symbols-outlined">local_hospital</span> Tratamiento personalizado</div>
+      <div class="trust-item"><span class="material-symbols-outlined">schedule</span> Cita disponible en 24h</div>
+      <div class="trust-item"><span class="material-symbols-outlined">star</span> 4.9 estrellas en Google</div>
+      <div class="trust-item"><span class="material-symbols-outlined">health_and_safety</span> 15+ años de experiencia</div>
+      <!-- Repeat for marquee -->
+      <div class="trust-item"><span class="material-symbols-outlined">verified_user</span> Fisioterapeutas colegiados</div>
+      <div class="trust-item"><span class="material-symbols-outlined">devices</span> Tecnología de última generación</div>
+      <div class="trust-item"><span class="material-symbols-outlined">local_hospital</span> Tratamiento personalizado</div>
+      <div class="trust-item"><span class="material-symbols-outlined">schedule</span> Cita disponible en 24h</div>
+      <div class="trust-item"><span class="material-symbols-outlined">star</span> 4.9 estrellas en Google</div>
+      <div class="trust-item"><span class="material-symbols-outlined">health_and_safety</span> 15+ años de experiencia</div>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICES ═══════════════════════════════════════ -->
+  <section id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Especialidades</span>
+        <h2 class="headline-md section-title">Nuestros Servicios</h2>
+        <p class="body-lg section-desc">Tratamientos personalizados para cada tipo de lesión o dolencia, aplicados por especialistas certificados.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" id="service-deportiva">
+          <div class="service-icon"><span class="material-symbols-outlined">sports_handball</span></div>
+          <h3>Fisioterapia Deportiva</h3>
+          <p>Prevención y tratamiento de lesiones en deportistas aficionados y profesionales. Vuelta segura al deporte.</p>
+        </div>
+        <div class="service-card" id="service-traumatologia">
+          <div class="service-icon"><span class="material-symbols-outlined">personal_injury</span></div>
+          <h3>Traumatología</h3>
+          <p>Rehabilitación postquirúrgica, esguinces, fracturas y dolores articulares con protocolos avanzados.</p>
+        </div>
+        <div class="service-card" id="service-pelvico">
+          <div class="service-icon"><span class="material-symbols-outlined">pregnant_woman</span></div>
+          <h3>Suelo Pélvico</h3>
+          <p>Tratamiento de incontinencia, recuperación postparto y disfunciones del suelo pélvico femenino y masculino.</p>
+        </div>
+        <div class="service-card" id="service-neurologia">
+          <div class="service-icon"><span class="material-symbols-outlined">psychology</span></div>
+          <h3>Neurología</h3>
+          <p>Rehabilitación de pacientes con daño cerebral adquirido o enfermedades neurodegenerativas.</p>
+        </div>
+        <div class="service-card" id="service-puncion">
+          <div class="service-icon"><span class="material-symbols-outlined">healing</span></div>
+          <h3>Punción Seca</h3>
+          <p>Técnica invasiva de alta eficacia para el tratamiento del dolor miofascial y puntos gatillo.</p>
+        </div>
+        <div class="service-card" id="service-readaptacion">
+          <div class="service-icon"><span class="material-symbols-outlined">fitness_center</span></div>
+          <h3>Readaptación</h3>
+          <p>Ejercicios pautados y supervisados para una vuelta segura y progresiva a la actividad física.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW WE WORK ════════════════════════════════════ -->
+  <section id="como-trabajamos">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <span class="section-label">Nuestro Método</span>
+        <h2 class="headline-md section-title">Cómo trabajamos</h2>
+        <p class="body-lg section-desc" style="margin:0 auto;">Un proceso estructurado en 4 pasos para garantizar los mejores resultados clínicos.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step" id="step-1">
+          <div class="step-circle"><span class="material-symbols-outlined">search</span></div>
+          <h3>Valoración</h3>
+          <p>Análisis exhaustivo de tu historial clínico, síntomas y pruebas complementarias.</p>
+        </div>
+        <div class="step" id="step-2">
+          <div class="step-circle"><span class="material-symbols-outlined">lab_research</span></div>
+          <h3>Diagnóstico</h3>
+          <p>Identificación precisa del origen funcional del problema, no solo el síntoma.</p>
+        </div>
+        <div class="step" id="step-3">
+          <div class="step-circle"><span class="material-symbols-outlined">medical_services</span></div>
+          <h3>Tratamiento</h3>
+          <p>Aplicación de técnicas manuales avanzadas y tecnología de última generación.</p>
+        </div>
+        <div class="step" id="step-4">
+          <div class="step-circle"><span class="material-symbols-outlined">trending_up</span></div>
+          <h3>Seguimiento</h3>
+          <p>Pautas, ejercicios y revisiones periódicas para consolidar y mantener la mejora.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TEAM ═══════════════════════════════════════════ -->
+  <section id="equipo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Profesionales</span>
+        <h2 class="headline-md section-title">Nuestro Equipo</h2>
+        <p class="body-lg section-desc">Especialistas en constante formación, comprometidos con tu recuperación y bienestar.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card" id="team-laura">
+          <div class="team-photo">
+            <span class="material-symbols-outlined">person</span>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-info">
+            <h3>Laura Martínez</h3>
+            <span class="team-badge">Fisioterapia Deportiva</span>
+            <p>Especialista en lesiones del deporte con más de 10 años de experiencia trabajando con atletas de alto rendimiento.</p>
+          </div>
+        </div>
+        <div class="team-card" id="team-carlos">
+          <div class="team-photo">
+            <span class="material-symbols-outlined">person</span>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-info">
+            <h3>Carlos Ruiz</h3>
+            <span class="team-badge">Osteopatía · Traumatología</span>
+            <p>Experto en terapia manual y osteopatía. Máster en Fisioterapia Musculoesquelética por la Universidad de Sevilla.</p>
+          </div>
+        </div>
+        <div class="team-card" id="team-ana">
+          <div class="team-photo">
+            <span class="material-symbols-outlined">person</span>
+            <div class="team-photo-overlay"></div>
+          </div>
+          <div class="team-info">
+            <h3>Ana Gómez</h3>
+            <span class="team-badge">Suelo Pélvico</span>
+            <p>Referente en fisioterapia uroginecológica. Pionera en técnicas de recuperación postparto en Andalucía.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ══════════════════════════════════ -->
+  <section id="opiniones">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <span class="section-label">Opiniones</span>
+        <h2 class="headline-md section-title">Lo que dicen nuestros pacientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card" id="testimonial-1">
+          <div class="t-stars">
+            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+            <span class="material-symbols-outlined">star</span>
+          </div>
+          <p class="t-text">"Llevaba meses con un dolor de espalda insoportable. Tras tres sesiones con Carlos, la mejoría fue increíble. Trato muy profesional y cercano."</p>
+          <div class="t-author">
+            <div class="t-avatar"><span class="material-symbols-outlined">person</span></div>
+            <div><div class="t-name">Miguel A.</div><div class="t-label">Paciente desde 2023</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card" id="testimonial-2">
+          <div class="t-stars">
+            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+            <span class="material-symbols-outlined">star</span>
+          </div>
+          <p class="t-text">"Acudí por una lesión deportiva y me guiaron estupendamente en toda la recuperación. Instalaciones muy modernas y un equipo excepcional."</p>
+          <div class="t-author">
+            <div class="t-avatar"><span class="material-symbols-outlined">person</span></div>
+            <div><div class="t-name">Elena S.</div><div class="t-label">Paciente desde 2024</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card" id="testimonial-3">
+          <div class="t-stars">
+            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+            <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+            <span class="material-symbols-outlined">star</span>
+          </div>
+          <p class="t-text">"Ana es una gran profesional. Me ayudó muchísimo con mi recuperación postparto. La recomiendo al 100% a cualquier mamá."</p>
+          <div class="t-author">
+            <div class="t-avatar"><span class="material-symbols-outlined">person</span></div>
+            <div><div class="t-name">María T.</div><div class="t-label">Paciente desde 2024</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ════════════════════════════════════ -->
+  <section id="cta-banner">
+    <div class="container">
+      <h2 class="headline-md">Empieza hoy tu recuperación</h2>
+      <p class="body-lg">Primera valoración gratuita. Sin compromiso. Con los mejores especialistas.</p>
+      <a class="btn btn-primary" href="#contacto" id="cta-banner-btn" style="font-size:17px; padding: 16px 36px;">
+        <span class="material-symbols-outlined" style="font-size:22px;">calendar_month</span>
+        Pedir cita ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ════════════════════════════════════════════ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <span class="section-label">FAQ</span>
+        <h2 class="headline-md section-title">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq-list">
+        <details id="faq-1">
+          <summary>¿Cuánto dura una sesión de fisioterapia? <span class="material-symbols-outlined chevron">expand_more</span></summary>
+          <p class="faq-answer">Las sesiones suelen durar aproximadamente 50-60 minutos, dependiendo del tratamiento y la evolución del paciente.</p>
+        </details>
+        <details id="faq-2">
+          <summary>¿Qué debo llevar a la primera consulta? <span class="material-symbols-outlined chevron">expand_more</span></summary>
+          <p class="faq-answer">Te recomendamos traer cualquier prueba médica relevante (radiografías, resonancias magnéticas, informes) e ir con ropa cómoda que permita acceder a la zona de tratamiento.</p>
+        </details>
+        <details id="faq-3">
+          <summary>¿Trabajáis con seguros médicos? <span class="material-symbols-outlined chevron">expand_more</span></summary>
+          <p class="faq-answer">Trabajamos de forma privada, pero emitimos facturas detalladas para que puedas solicitar el reembolso si tu póliza de seguro lo permite.</p>
+        </details>
+        <details id="faq-4">
+          <summary>¿Qué métodos de pago aceptáis? <span class="material-symbols-outlined chevron">expand_more</span></summary>
+          <p class="faq-answer">Aceptamos pago con tarjeta de crédito/débito, efectivo y transferencia mediante Bizum.</p>
+        </details>
+        <details id="faq-5">
+          <summary>¿Cuántas sesiones necesitaré? <span class="material-symbols-outlined chevron">expand_more</span></summary>
+          <p class="faq-answer">Depende de cada caso. En la primera valoración, el fisioterapeuta establecerá un plan de tratamiento con un número estimado de sesiones adaptado a tu situación concreta.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ════════════════════════════════════════ -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Contacto</span>
+        <h2 class="headline-md section-title">Estamos aquí para ayudarte</h2>
+        <p class="body-lg section-desc">Reserva tu cita o consúltanos cualquier duda. Respondemos en menos de 24h.</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info">
+            <div class="contact-row">
+              <div class="contact-icon"><span class="material-symbols-outlined">location_on</span></div>
+              <div>
+                <h4>Dirección</h4>
+                <p>C. Hermanas Mirabal, 2<br/>41927 Mairena del Aljarafe, Sevilla</p>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon"><span class="material-symbols-outlined">schedule</span></div>
+              <div>
+                <h4>Horario</h4>
+                <p>Lunes a Viernes: 9:00 – 21:00<br/>Sábados: bajo cita previa</p>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon"><span class="material-symbols-outlined">call</span></div>
+              <div>
+                <h4>Teléfono</h4>
+                <p><a href="tel:+34600000000" style="color:var(--primary);font-weight:600;">600 000 000</a></p>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon"><span class="material-symbols-outlined">mail</span></div>
+              <div>
+                <h4>Email</h4>
+                <p><a href="mailto:info@fisitec.es" style="color:var(--primary);font-weight:600;">info@fisitec.es</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="map-embed" style="margin-top:28px;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.0!2d-6.0608!3d37.3439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMairena+del+Aljarafe!5e0!3m2!1ses!2ses!4v1700000000000"
+              title="Ubicación de Fisitec en Mairena del Aljarafe, Sevilla"
+              allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+        <div>
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Nombre completo</label>
+              <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Teléfono (opcional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="600 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="service">Servicio de interés</label>
+              <input type="text" id="service" name="service" placeholder="Ej: Fisioterapia deportiva" />
+            </div>
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" rows="5" placeholder="Cuéntanos brevemente tu caso..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="form-submit-btn">
+              <span class="material-symbols-outlined" style="font-size:20px;">send</span>
+              Enviar mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="#inicio">
+            <div class="nav-logo-icon"><span class="material-symbols-outlined" style="font-size:22px;">sports_handball</span></div>
+            Fisitec
+          </a>
+          <p>Clínica de fisioterapia avanzada en Mairena del Aljarafe, Sevilla. Comprometidos con tu salud y bienestar desde 2009.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Fisioterapia Deportiva</a></li>
+            <li><a href="#servicios">Traumatología</a></li>
+            <li><a href="#servicios">Suelo Pélvico</a></li>
+            <li><a href="#servicios">Neurología</a></li>
+            <li><a href="#servicios">Punción Seca</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Clínica</h4>
+          <ul>
+            <li><a href="#como-trabajamos">Nuestro Método</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#opiniones">Opiniones</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Aviso Legal</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Política de Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Fisitec. Todos los derechos reservados.</p>
+        <p>Diseñado con <span style="color:#af3216;">♥</span> en Mairena del Aljarafe</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" aria-label="Volver arriba">
+    <span class="material-symbols-outlined">arrow_upward</span>
+  </button>
+
+  <script>
+    // ── Navbar scroll effect ──────────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+      document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // ── Scroll to top ─────────────────────────────────────
+    document.getElementById('scroll-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Mobile menu ───────────────────────────────────────
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburger  = document.getElementById('hamburger-btn');
+    const closeBtn   = document.getElementById('close-menu-btn');
+
+    function openMenu()  { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; hamburger.setAttribute('aria-expanded','true'); }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
+
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // ── Contact form (demo) ───────────────────────────────
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('form-submit-btn');
+      btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:20px;">check_circle</span> ¡Mensaje enviado!';
+      btn.style.background = '#006d37';
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:20px;">send</span> Enviar mensaje';
+        btn.style.background = '';
+        this.reset();
+      }, 3000);
+    });
+
+    // ── Intersection Observer – fade in on scroll ─────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .team-card, .testimonial-card, .step').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
